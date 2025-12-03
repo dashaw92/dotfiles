@@ -1,0 +1,9 @@
+[[language]]
+name = "clojure"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = "`"

@@ -1,0 +1,77 @@
+theme = "catppuccin_mocha"
+
+[editor]
+mouse = false
+bufferline = "multiple"
+popup-border = "all"
+auto-pairs = true
+color-modes = true
+shell = ["nu", "-c"]
+
+[editor.file-picker]
+ignore = true
+parents = true
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "error"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+# I hit these by mistake all the time
+# pagedown = "no_op"
+# pageup = "no_op"
+# home = "no_op"
+# end = "no_op"
+A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+ret = "goto_word"
+
+# [keys.insert]
+# pagedown = "no_op"
+# pageup = "no_op"
+# home = "no_op"
+# end = "no_op"
+
+[keys.select]
+# pagedown = "no_op"
+# pageup = "no_op"
+# home = "no_op"
+# end = "no_op"
+A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+ret = "goto_word"
+
+[keys.normal."backspace"]
+space = ":rl"
+r = ":config-reload"
+o = ":config-open"
+C = ":bc"
+X = ":bco"
+# Theme toggles
+# d = ":theme solarized_dark"
+# D = ":theme solarized_light"
+
+# List mode
+[keys.normal.";"]
+# Create unfinished TODO item(s)
+x = "@<A-s>ghi❌ <esc><esc>"
+# Mark a TODO item as ;done
+d = "@xs❌<ret>c✅<esc><down><left>"
+# ;undo a TODO item's completion status
+u = "@xs✅<ret>c❌<esc><down><left>"
+# Create groups of 5, nothing magic about this
+# it just makes it easier for me to push myself
+# to complete the items.
+5 = "@v4<down>o<esc><down>"
+# Removes all empty (blank) lines from the file
+# Generally used before applying ;5, aka after
+# Ctrl+;v
+v = "@%s\\W+\\n<ret>c<ret><esc><esc>"
+# Toggle word wrap
+w = ":toggle soft-wrap.enable"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
