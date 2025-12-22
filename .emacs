@@ -4,16 +4,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("f9d423fcd4581f368b08c720f04d206ee80b37bfb314fa37e279f554b6f415e9"
+     default))
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(catppuccin-theme cider markdown-mode rainbow-delimiters smartparens))
+   '(auto-dark catppuccin-theme cider company markdown-mode
+	       rainbow-delimiters smartparens))
  '(tool-bar-mode nil))
 
-(defun open-init-el ()
-  "Open ~/.emacs.d/init.el"
-  (interactive)
-  (find-file "~/.emacs"))
+(menu-bar-mode -1)
+(column-number-mode)
+(global-company-mode)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -27,8 +31,31 @@
 
 (require 'smartparens-config)
 
-(setq catppuccin-flavor 'macchiato) ; or 'latte, 'macchiato, or 'mocha
 (load-theme 'catppuccin t)
+
+(require 'auto-dark)
+(use-package auto-dark
+  :ensure t
+  :config
+  (ignore-errors
+    (setq auto-dark-themes '((catppuccin) (catppuccin)))
+
+    (add-hook 'auto-dark-dark-mode-hook
+              (lambda ()
+                (setq catppuccin-flavor 'macchiato)
+                (catppuccin-reload)))
+
+    (add-hook 'auto-dark-light-mode-hook
+              (lambda ()
+                (setq catppuccin-flavor 'latte)
+                (catppuccin-reload)))
+
+    (auto-dark-mode 1)))
+
+(defun open-init-el ()
+  "Open ~/.emacs.d/init.el"
+  (interactive)
+  (find-file "~/.emacs"))
 
 (defun setup-clojure ()
   (smartparens-mode)

@@ -1,4 +1,7 @@
-theme = "catppuccin_mocha"
+# [theme]
+# dark = "catppuccin_mocha"
+# light = "catppuccin_latte"
+theme = "catppuccin_macchiato"
 
 [editor]
 mouse = false
